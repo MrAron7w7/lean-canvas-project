@@ -1,12 +1,17 @@
-
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2941620892.
 import 'package:flutter/material.dart';
 
-class SplashPage extends StatelessWidget {
-  const SplashPage({super.key});
+class CreatePage extends StatefulWidget {
+  CreatePage({Key? key}) : super(key: key);
 
   @override
+  _CreatePageState createState() => _CreatePageState();
+}
+
+class _CreatePageState extends State<CreatePage> {
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+       
+    );
   }
 }
