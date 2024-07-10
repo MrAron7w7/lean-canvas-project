@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:lean_canvas/pages/profile_page/profile_page.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lean_canvas/pages/splash_page/login_page.dart';
 
-
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: ProfilePage(),
+    return MaterialApp(
+      title: 'Lean Canvas',
+      theme: ThemeData(
+        fontFamily: GoogleFonts.poppins().fontFamily,
+      ),
+      //home: SplashPage(),
+      home: const LoginPage(),
     );
   }
 }
