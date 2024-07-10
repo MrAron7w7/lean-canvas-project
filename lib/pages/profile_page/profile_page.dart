@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lean_canvas/pages/profile_page/edit_profile.dart';
 import 'package:lean_canvas/pages/profile_page/utils.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -23,7 +24,8 @@ class _ProfilePageState extends State<ProfilePage> {
             right: 0,
             child: ClipPath(
               clipper: OvalBottomClipper(),
-              child: Image.asset('lib/pages/profile_page/images/LeanCanvasBanner.jpg'),
+              child: Image.asset(
+                  'lib/pages/profile_page/images/LeanCanvasBanner.jpg'),
             ),
           ),
           Positioned(
@@ -36,7 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
               child: CircleAvatar(
                 radius: 70,
                 backgroundImage:
-                    Image.asset('lib/pages/profile_page/images/profile.png').image,
+                    Image.asset('lib/pages/profile_page/images/profile.png')
+                        .image,
               ),
             ),
           ),
@@ -60,7 +63,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    final route = MaterialPageRoute(
+                      builder: (_) => const EditProfile(),
+                    );
+                    Navigator.push(context, route);
+                  }, ////button
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(
                         0xFFE1C329), // Color de fondo en formato ARGB
