@@ -67,7 +67,7 @@ class _EditProfileState extends State<EditProfile> {
               child: CircleAvatar(
                 radius: 100,
                 backgroundImage:
-                    Image.asset('lib/pages/profile_page/images/profile.png')
+                    Image.asset('assets/images/profile.png')
                         .image,
               ),
             ),

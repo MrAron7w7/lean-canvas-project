@@ -25,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: ClipPath(
               clipper: OvalBottomClipper(),
               child: Image.asset(
-                  'lib/pages/profile_page/images/LeanCanvasBanner.jpg'),
+                 'assets/images/LeanCanvasBanner.jpg '),
             ),
           ),
           Positioned(
@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: CircleAvatar(
                 radius: 70,
                 backgroundImage:
-                    Image.asset('lib/pages/profile_page/images/profile.png')
+                    Image.asset('assets/images/fondo-edit-profile.jpg')
                         .image,
               ),
             ),

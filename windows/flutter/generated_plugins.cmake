@@ -4,10 +4,13 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
 <<<<<<< HEAD
+<<<<<<< HEAD
   url_launcher_windows
 =======
   file_selector_windows
 >>>>>>> 2f73f7f (tercer commit)
+=======
+>>>>>>> 16d9f81 (4)
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

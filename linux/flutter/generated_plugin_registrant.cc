@@ -7,6 +7,7 @@
 #include "generated_plugin_registrant.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <url_launcher_linux/url_launcher_plugin.h>
 
 void fl_register_plugins(FlPluginRegistry* registry) {
@@ -21,4 +22,8 @@ void fl_register_plugins(FlPluginRegistry* registry) {
       fl_plugin_registry_get_registrar_for_plugin(registry, "FileSelectorPlugin");
   file_selector_plugin_register_with_registrar(file_selector_linux_registrar);
 >>>>>>> 2f73f7f (tercer commit)
+=======
+
+void fl_register_plugins(FlPluginRegistry* registry) {
+>>>>>>> 16d9f81 (4)
 }
