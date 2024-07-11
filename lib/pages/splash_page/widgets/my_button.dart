@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyButton extends StatelessWidget {
   final void Function()? onPressed;
@@ -28,10 +29,10 @@ class MyButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: TextStyle(
-          color: const Color(0xffF5F3F5),
-          fontWeight: FontWeight.w600,
+        style: GoogleFonts.poppins(
           fontSize: sizeText,
+          fontWeight: FontWeight.w600,
+          color: const Color(0xffF5F3F5),
         ),
       ),
     );

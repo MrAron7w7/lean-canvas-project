@@ -1,18 +1,56 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:lean_canvas/pages/splash_page/datas/splash.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class Presentation01 extends StatefulWidget {
-  const Presentation01({super.key});
+import '/pages/splash_page/datas/splash.dart';
+import '/pages/splash_page/login_page.dart';
+import '/pages/splash_page/widgets/my_button.dart';
+
+class Presentation extends StatefulWidget {
+  const Presentation({super.key});
 
   @override
-  State<Presentation01> createState() => _Presentation01State();
+  State<Presentation> createState() => _PresentationState();
 }
 
-class _Presentation01State extends State<Presentation01> {
+class _PresentationState extends State<Presentation> {
+  int _currentPage = 0;
   final _dataPresentation = PresentationData.getPresentationDatas();
   final _controller = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      setState(() {
+        _currentPage = _controller.page?.round() ?? 0;
+      });
+    });
+  }
+
+  void _nextPage() {
+    if (_currentPage == _dataPresentation.length - 1) {
+      Navigator.pushReplacement(
+          context, CupertinoPageRoute(builder: (context) => const LoginPage()));
+    } else {
+      setState(() {
+        _currentPage++;
+        _controller.animateToPage(
+          _currentPage,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeIn,
+        );
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,44 +102,36 @@ class _Presentation01State extends State<Presentation01> {
                   const Gap(40),
 
                   // Bottones
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (context) => const LoginPage()));
+                        },
                         style: TextButton.styleFrom(
                           foregroundColor: const Color(0xff5F5F5F),
                         ),
-                        child: const Text(
+                        child: Text(
                           'Skip',
-                          style: TextStyle(fontSize: 15),
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xff274690),
-                          elevation: 0.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 18,
-                            horizontal: 35,
-                          ),
-                        ),
-                        child: const Text(
-                          'Siguiente',
-                          style: TextStyle(
-                            color: Color(0xffF5F3F5),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                          ),
-                        ),
+                      MyButton(
+                        sizeText: 15,
+                        text: 'Siguiente',
+                        sizeWidth: 30,
+                        sizeHeight: 50,
+                        onPressed: _nextPage,
                       ),
                     ],
-                  ),
+                  )
                 ],
               ),
             );

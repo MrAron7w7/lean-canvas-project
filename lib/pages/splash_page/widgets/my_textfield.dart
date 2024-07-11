@@ -4,27 +4,27 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTextfield extends StatelessWidget {
   final TextInputType keyboardType;
   final String hintText;
-  final bool obscureText;
+  final bool? obscureText;
   final TextEditingController controller;
   const MyTextfield({
     super.key,
     required this.keyboardType,
     required this.hintText,
-    required this.obscureText,
+    this.obscureText = false,
     required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      obscureText: obscureText,
+      obscureText: obscureText!,
       cursorColor: const Color(0xff576CA8),
       keyboardType: keyboardType,
       controller: controller,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 20,
+          horizontal: 18,
+          vertical: 18,
         ),
         hintText: hintText,
         hintStyle: GoogleFonts.poppins(
