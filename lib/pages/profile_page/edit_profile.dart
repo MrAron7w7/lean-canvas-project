@@ -11,6 +11,7 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   bool isDarkMode = false;
+  String fondoEdiProfile = 'assets/images/fondo-edit-profile.jpg';
 
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -30,8 +31,7 @@ class _EditProfileState extends State<EditProfile> {
             right: 0,
             child: ClipPath(
               clipper: OvalBottomClipper(),
-              child: Image.asset(
-                  'lib/pages/profile_page/images/fondo-edit-profile.jpg'),
+              child: Image.asset(fondoEdiProfile),
             ),
           ),
           Positioned(
@@ -66,9 +66,7 @@ class _EditProfileState extends State<EditProfile> {
               backgroundColor: Colors.white,
               child: CircleAvatar(
                 radius: 100,
-                backgroundImage:
-                    Image.asset('assets/images/profile.png')
-                        .image,
+                backgroundImage: Image.asset('assets/images/profile.png').image,
               ),
             ),
           ),

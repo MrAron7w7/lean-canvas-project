@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lean_canvas/pages/profile_page/edit_profile.dart';
 import 'package:lean_canvas/pages/profile_page/utils.dart';
@@ -12,6 +13,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   bool isDarkMode = false;
 
+  String profile = 'assets/images/profile.png';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
             right: 0,
             child: ClipPath(
               clipper: OvalBottomClipper(),
-              child: Image.asset(
-                 'assets/images/LeanCanvasBanner.jpg '),
+              child: Image.asset('assets/images/LeanCanvasBanner.jpg'),
             ),
           ),
           Positioned(
@@ -37,9 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
               backgroundColor: Colors.white,
               child: CircleAvatar(
                 radius: 70,
-                backgroundImage:
-                    Image.asset('assets/images/fondo-edit-profile.jpg')
-                        .image,
+                backgroundImage: Image.asset(profile).image,
               ),
             ),
           ),
@@ -62,14 +62,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Colors.black12),
                 ),
                 const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    final route = MaterialPageRoute(
-                      builder: (_) => const EditProfile(),
-                    );
-                    Navigator.push(context, route);
-                  }, ////button
+
+                ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
                     backgroundColor: const Color(
                         0xFFE1C329), // Color de fondo en formato ARGB
                     shape: RoundedRectangleBorder(
@@ -77,30 +73,17 @@ class _ProfilePageState extends State<ProfilePage> {
                           BorderRadius.circular(10.0), // Bordes redondeados
                     ),
                   ),
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 2.0, vertical: 1.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize
-                          .min, // Ajusta el tamaño del Row al contenido
-                      children: [
-                        Icon(
-                          Icons.edit, // Cambia esto por el icono que prefieras
-                          color: Colors.white,
-                          size: 16.0, // Tamaño del icono
-                        ),
-                        SizedBox(
-                            width: 4.0), // Espacio entre el icono y el texto
-                        Text(
-                          'Edit Profile',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                        ),
-                      ],
-                    ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const EditProfile()));
+                  },
+                  icon: const Icon(
+                    Icons.edit,
+                    size: 14,
                   ),
+                  label: const Text('Edit Profile'),
                 ),
                 const SizedBox(height: 5),
                 Container(
@@ -131,12 +114,12 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             ListTile(
                               leading: const Icon(Icons.brightness_6),
-                              title: Text('Tema'),
+                              title: const Text('Tema'),
                               trailing: Switch(
                                 value: isDarkMode,
                                 onChanged: (value) {
                                   setState(() {
-                                    isDarkMode = value;
+                                    isDarkMode = !isDarkMode;
                                   });
                                 },
                               ),
