@@ -40,6 +40,8 @@ dependencies:
   flutter_native_splash: ^2.4.1
   flutter_svg: ^2.0.10+1
   iconly: ^1.0.1
+  dio: ^5.5.0+1
+  url_launcher: ^6.0.20
 
 dev_dependencies:
   flutter_test:

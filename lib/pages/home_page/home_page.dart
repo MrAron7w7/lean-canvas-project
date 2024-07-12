@@ -1,4 +1,9 @@
 
+
+import 'package:flutter/cupertino.dart';
+
+import 'QueEs_page.dart';
+import 'libros_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,16 +21,53 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 150.0), // Ajusta la altura según sea necesario
+            const SizedBox(height: 2.0),
+Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              height: 90.0, // Altura del rectángulo
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+              
+                  colors: [Color.fromARGB(255, 27, 77, 162), Color(0xFF40C4FF)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Bienvenido' +', Aròn Del Piero Magallanes Torres', 
+                      style: const TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
+                  const CircleAvatar(
+                    radius: 35,
+                    backgroundImage: AssetImage('assets/images/foto_perfil.jpg'), // imagen del prifil
+                  ),
+                ],
+              ),
+            ),
+//******************************************************************************************************* */
+       
+       
+            const SizedBox(height: 30.0), // Espacio entre el rectángulo y los botones
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: CustomButton(
-                    image: 'assets/images/libros.png', // Nueva ruta
+                    image: 'assets/images/libros.png', // ruta libro imagen
                     text: 'Libros',
                     onPressed: () {
                       // Navegar a la página de libros
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => LibrosPage()),
+                      );
                     },
                   ),
                 ),
@@ -47,20 +89,24 @@ class HomePage extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomButton(
-                    image: 'assets/images/proyectos.png', // Nueva ruta
+                    image: 'assets/images/proyectos.png', 
                     text: 'Proyectos',
                     onPressed: () {
                       // Navegar a la página de proyectos
                     },
                   ),
                 ),
-                const SizedBox(width: 16.0), // Espacio entre los botones
+                const SizedBox(width: 40.0), // Espacio entre los botones
                 Expanded(
                   child: CustomButton(
-                    image: 'assets/images/que_es.png', // Nueva ruta
+                    image: 'assets/images/que_es.png', 
                     text: '¿Qué es?',
                     onPressed: () {
-                      // Navegar a la página de ¿Qué es?
+                      // que es¡?¡?
+                       Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => QueEsPage()),
+                      );
                     },
                   ),
                 ),
@@ -93,14 +139,16 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        minimumSize: const Size(double.infinity, 100), // Ancho completo y altura mínima de 100
+        minimumSize: const Size(double.infinity, 80), // Ancho completo y altura mínima de 100
+        elevation: 20, // Ajusta la elevación según sea necesario
+        shadowColor: Colors.lightBlueAccent, // Color de la sombra
       ),
       onPressed: onPressed,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(image, height: 60), // Ajusta la altura de la imagen según sea necesario
-          const SizedBox(height: 45.0),
+          Image.asset(image, height: 80), //Ajusta la altura de la imagen que est dtnro del buton
+          const SizedBox(height: 10.0),
           Text(text, style: const TextStyle(fontSize: 18)),
         ],
       ),
@@ -110,7 +158,12 @@ class CustomButton extends StatelessWidget {
 
 
 
+
+
+
+
 /*
+import 'libros_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -124,26 +177,33 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(height: 100.0), // Ajusta la altura según sea necesario
+          
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: CustomButton(
-                    image: 'assets/images/libros.png', 
+                    image: 'assets/images/libros.png', // Nueva ruta
                     text: 'Libros',
                     onPressed: () {
                       // Navegar a la página de libros
+                        // Navegar a la página de libros
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LibrosPage()),
+                      );
                     },
                   ),
                 ),
-                const SizedBox(width: 16.0), // Espacio entre los botones
+                const SizedBox(width: 40.0), // Espacio entre los botones
                 Expanded(
                   child: CustomButton(
-                    image: 'assets/images/pilares.png', 
+                    image: 'assets/images/pilares.png', // Nueva ruta
                     text: 'Pilares',
                     onPressed: () {
                       // Navegar a la página de pilares
@@ -152,7 +212,7 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16.0), // Espacio entre las filas
+            const SizedBox(height: 40.0), // Espacio entre las filas
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -165,10 +225,10 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                 ),
-                const SizedBox(width: 16.0), // Espacio entre los botones
+                const SizedBox(width: 40.0), // Espacio entre los botones
                 Expanded(
                   child: CustomButton(
-                    image: 'assets/images/que_es.png',
+                    image: 'assets/images/que_es.png', 
                     text: '¿Qué es?',
                     onPressed: () {
                       // Navegar a la página de ¿Qué es?
@@ -205,13 +265,15 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         minimumSize: const Size(double.infinity, 100), // Ancho completo y altura mínima de 100
+        elevation: 20, // Ajusta la elevación según sea necesario
+        shadowColor: Colors.lightBlueAccent, // Color de la sombra
       ),
       onPressed: onPressed,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(image, height: 50), // Ajusta la altura de la imagen según sea necesario
-          const SizedBox(height: 8.0),
+          Image.asset(image, height: 80), // Ajusta la altura de la imagen 
+          const SizedBox(height: 20.0),
           Text(text, style: const TextStyle(fontSize: 18)),
         ],
       ),
@@ -219,4 +281,45 @@ class CustomButton extends StatelessWidget {
   }
 }
 
+
+
+
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*
+           Container(
+              height: 60.0, // Altura del rectángulo
+              color: Colors.blueAccent, // Color del rectángulo
+              alignment: Alignment.center,
+              child: const Text(
+                'Este es un rectángulo',
+                style: TextStyle(color: Color.fromARGB(237, 89, 40, 223), fontSize: 24),
+              ),
+            ),
+            const SizedBox(height: 10.0), // Espacio entre el rectángulo y los botones
+           */
