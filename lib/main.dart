@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lean_canvas/pages/splash_page/presentation_page.dart';
+import 'package:lean_canvas/botton_navbar/botton_navbar.dart';
 
 void main() => runApp(const MyApp());
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       //home: SplashPage(),
-      home: const Presentation(),
+      home: const BottonNavbar(),
     );
   }
 }
