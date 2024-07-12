@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lean_canvas/pages/create_page/add.dart';
+import 'package:lean_canvas/pages/create_page/detail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-import 'add.dart';
-import 'detail.dart';
 
 class CreatePage extends StatefulWidget {
   @override
@@ -23,8 +23,9 @@ class _CreatePageState extends State<CreatePage> {
     final prefs = await SharedPreferences.getInstance();
     final String? itemsString = prefs.getString('items');
     if (itemsString != null) {
+      final List<dynamic> decodedItems = json.decode(itemsString);
       setState(() {
-        items = List<Map<String, String>>.from(json.decode(itemsString));
+        items = decodedItems.map((item) => Map<String, String>.from(item)).toList();
       });
     }
   }
@@ -67,7 +68,8 @@ class _CreatePageState extends State<CreatePage> {
         backgroundColor: const Color(0xFF1B264F),
       ),
       body: Container(
-        color: const Color(0xFFF6F4F6),
+        color: Colors.white,
+        height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -77,9 +79,15 @@ class _CreatePageState extends State<CreatePage> {
                 'PROYECTOS',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF302B27)),
               ),
+              const SizedBox(height: 10),
               const Text(
                 'Visualiza tu modelo de negocio',
                 style: TextStyle(fontSize: 16, color: Color(0xFF1B264F)),
+              ),
+              const SizedBox(height: 30),
+              Image.asset(
+                'assets/images/modelocanvas.png', 
+                height: 250, 
               ),
               const SizedBox(height: 20),
               Expanded(
@@ -89,11 +97,11 @@ class _CreatePageState extends State<CreatePage> {
                     return SizedBox(
                       height: 80,
                       child: Card(
-                        color: Colors.white,
+                        color: const Color(0xFFf6f4f6),
                         elevation: 4,
                         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         child: ListTile(
-                          title: Text(items[index]['nombreProyecto'] ?? '', style: const TextStyle(color: Color(0xFF302B27))),
+                          title: Text(items[index]['nombreProyecto'] ?? '', style: const TextStyle(color: Color(0xFF302B27), fontWeight: FontWeight.bold)),
                           onTap: () async {
                             final result = await Navigator.push<Map<String, String>>(
                               context,
@@ -140,9 +148,9 @@ class _CreatePageState extends State<CreatePage> {
           }
         },
         child: const Icon(
-          Icons.add,
+          Icons.add_circle_outline,
           color: Colors.white,
-          size: 30,
+          size: 40,
         ),
       ),
     );
