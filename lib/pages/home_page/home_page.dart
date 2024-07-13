@@ -1,160 +1,134 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'libros_page.dart';
-import 'que_es_page.dart';
+import 'package:gap/gap.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List data = [
+      {
+        'text': 'Libros',
+        'image': 'assets/images/libros.png',
+        'onTap': () => Navigator.pushNamed(context, '/LibroPage'),
+      },
+      {
+        'text': 'Pilares',
+        'image': 'assets/images/pilares.png',
+        'onTap': () => Navigator.pushNamed(context, '/libros'),
+      },
+      {
+        'text': 'Proyectos',
+        'image': 'assets/images/proyectos.png',
+        'onTap': () => Navigator.pushNamed(context, '/libros'),
+      },
+      {
+        'text': '¿Qué es?',
+        'image': 'assets/images/que_es.png',
+        'onTap': () => Navigator.pushNamed(context, '/QueEsPage'),
+      }
+    ];
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Lean Canvas'),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 2.0),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              height: 90.0, // Altura del rectángulo
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color.fromARGB(255, 27, 77, 162), Color(0xFF40C4FF)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Bienvenido' ', Aròn Del Piero Magallanes Torres',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 2.0),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  height: 90.0, // Altura del rectángulo
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 27, 77, 162),
+                        Color(0xFF40C4FF)
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundImage: AssetImage(
-                        'assets/images/foto_perfil.jpg'), // imagen del prifil
-                  ),
-                ],
-              ),
-            ),
-//******************************************************************************************************* */
 
-            const SizedBox(
-                height: 30.0), // Espacio entre el rectángulo y los botones
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: CustomButton(
-                    image: 'assets/images/libros.png', // ruta libro imagen
-                    text: 'Libros',
-                    onPressed: () {
-                      // Navegar a la página de libros
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) => const LibrosPage()),
-                      );
-                    },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Bienvenido' ', Aròn Del Piero Magallanes Torres',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
+                      CircleAvatar(
+                        radius: 35,
+                        backgroundImage: AssetImage(
+                            'assets/images/foto_perfil.jpg'), // imagen del prifil
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 40.0), // Espacio entre los botones
-                Expanded(
-                  child: CustomButton(
-                    image: 'assets/images/pilares.png', // Nueva ruta
-                    text: 'Pilares',
-                    onPressed: () {
-                      // Navegar a la página de pilares
-                    },
+                //******************************************************************************************************* */
+
+                // Este es un SizeBox de 30 pixeles
+                const Gap(30),
+
+                // Cards
+                GridView.builder(
+                  itemCount: data.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 40.0), // Espacio entre las filas
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: CustomButton(
-                    image: 'assets/images/proyectos.png',
-                    text: 'Proyectos',
-                    onPressed: () {
-                      // Navegar a la página de proyectos
-                    },
-                  ),
-                ),
-                const SizedBox(width: 40.0), // Espacio entre los botones
-                Expanded(
-                  child: CustomButton(
-                    image: 'assets/images/que_es.png',
-                    text: '¿Qué es?',
-                    onPressed: () {
-                      // que es¡?¡?
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const QueEsPage()),
-                      );
-                    },
-                  ),
+                  itemBuilder: (context, index) {
+                    final image = data[index]['image'];
+                    final text = data[index]['text'];
+                    return _myCard(
+                      context,
+                      onTap: data[index]['onTap'] as VoidCallback,
+                      text: text,
+                      image: image,
+                    );
+                  },
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 }
 
-class CustomButton extends StatelessWidget {
-  final String image;
-  final String text;
-  final VoidCallback onPressed;
-
-  const CustomButton({
-    super.key,
-    required this.image,
-    required this.text,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.all(16.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        minimumSize: const Size(
-            double.infinity, 80), // Ancho completo y altura mínima de 100
-        elevation: 20, // Ajusta la elevación según sea necesario
-        shadowColor: Colors.lightBlueAccent, // Color de la sombra
-      ),
-      onPressed: onPressed,
+Widget _myCard(BuildContext context,
+    {required String text,
+    required String image,
+    required VoidCallback onTap}) {
+  return Card(
+    elevation: 20,
+    color: Colors.white,
+    shadowColor: Colors.lightBlueAccent,
+    child: InkWell(
+      borderRadius: BorderRadius.circular(10),
+      splashColor: Colors.lightBlueAccent,
+      onTap: onTap,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Image.asset(image,
-              height:
-                  80), //Ajusta la altura de la imagen que est dtnro del buton
-          const SizedBox(height: 10.0),
-          Text(text, style: const TextStyle(fontSize: 18)),
+          const Gap(20),
+          CircleAvatar(
+            radius: 40,
+            backgroundImage: AssetImage(image),
+          ),
+          const Gap(10),
+          Text(text),
+          const Gap(20),
         ],
       ),
-    );
-  }
+    ),
+  );
 }
