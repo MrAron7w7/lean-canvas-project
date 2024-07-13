@@ -81,9 +81,9 @@ flutter:
     - assets/images/
     - assets/splash/
     - assets/svg/
-  - lib/pages/profile_page/images/LeanCanvasBanner.jpg
-  - lib/pages/profile_page/images/profile.png
-  - lib/pages/profile_page/images/fondo-edit-profile.jpg
+    - assets/images/LeanCanvasBanner.jpg
+    - assets/images/profile.png
+    - assets/images/fondo-edit-profile.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

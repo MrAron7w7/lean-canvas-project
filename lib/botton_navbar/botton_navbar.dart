@@ -3,6 +3,9 @@ import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
+import '/pages/home_page/home_page.dart';
+import '../pages/profile_page/profile_page.dart';
+
 class BottonNavbar extends StatefulWidget {
   const BottonNavbar({super.key});
 
@@ -21,9 +24,9 @@ class _BottonNavbarState extends State<BottonNavbar> {
   }
 
   final List<Widget> _pages = [
-    const Center(child: Text('Page1')),
-    const Center(child: Text('Page2')),
-    const Center(child: Text('Page3')),
+    const HomePage(),
+    const Center(child: Text('Create page')),
+    const ProfilePage(),
   ];
 
   // Al precionar el navbar se va a dirigir a la pagina

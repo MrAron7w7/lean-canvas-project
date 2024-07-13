@@ -7,8 +7,8 @@ class OvalBottomClipper extends CustomClipper<Path> {
     path.lineTo(0, size.height / 1.2);
     path.quadraticBezierTo(
         size.width / 2, size.height, size.width, size.height / 1.2);
-        path.lineTo(size.width, 0);
-        return path;
+    path.lineTo(size.width, 0);
+    return path;
   }
 
   @override

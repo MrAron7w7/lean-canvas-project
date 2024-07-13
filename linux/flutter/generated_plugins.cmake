@@ -3,14 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-<<<<<<< HEAD
-<<<<<<< HEAD
-  url_launcher_linux
-=======
   file_selector_linux
->>>>>>> 2f73f7f (tercer commit)
-=======
->>>>>>> 16d9f81 (4)
+  url_launcher_linux
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

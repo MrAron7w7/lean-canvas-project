@@ -1,10 +1,8 @@
-
-
 import 'package:flutter/cupertino.dart';
-
-import 'QueEs_page.dart';
-import 'libros_page.dart';
 import 'package:flutter/material.dart';
+
+import 'libros_page.dart';
+import 'que_es_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,12 +20,11 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 2.0),
-Container(
+            Container(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               height: 90.0, // Altura del rectángulo
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-              
+                gradient: const LinearGradient(
                   colors: [Color.fromARGB(255, 27, 77, 162), Color(0xFF40C4FF)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -35,26 +32,27 @@ Container(
                 borderRadius: BorderRadius.circular(12),
               ),
 
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     child: Text(
-                      'Bienvenido' +', Aròn Del Piero Magallanes Torres', 
-                      style: const TextStyle(color: Colors.white, fontSize: 20),
+                      'Bienvenido' ', Aròn Del Piero Magallanes Torres',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ),
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 35,
-                    backgroundImage: AssetImage('assets/images/foto_perfil.jpg'), // imagen del prifil
+                    backgroundImage: AssetImage(
+                        'assets/images/foto_perfil.jpg'), // imagen del prifil
                   ),
                 ],
               ),
             ),
 //******************************************************************************************************* */
-       
-       
-            const SizedBox(height: 30.0), // Espacio entre el rectángulo y los botones
+
+            const SizedBox(
+                height: 30.0), // Espacio entre el rectángulo y los botones
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -66,7 +64,8 @@ Container(
                       // Navegar a la página de libros
                       Navigator.push(
                         context,
-                        CupertinoPageRoute(builder: (context) => LibrosPage()),
+                        CupertinoPageRoute(
+                            builder: (context) => const LibrosPage()),
                       );
                     },
                   ),
@@ -89,7 +88,7 @@ Container(
               children: [
                 Expanded(
                   child: CustomButton(
-                    image: 'assets/images/proyectos.png', 
+                    image: 'assets/images/proyectos.png',
                     text: 'Proyectos',
                     onPressed: () {
                       // Navegar a la página de proyectos
@@ -99,13 +98,14 @@ Container(
                 const SizedBox(width: 40.0), // Espacio entre los botones
                 Expanded(
                   child: CustomButton(
-                    image: 'assets/images/que_es.png', 
+                    image: 'assets/images/que_es.png',
                     text: '¿Qué es?',
                     onPressed: () {
                       // que es¡?¡?
-                       Navigator.push(
+                      Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => QueEsPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const QueEsPage()),
                       );
                     },
                   ),
@@ -139,7 +139,8 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        minimumSize: const Size(double.infinity, 80), // Ancho completo y altura mínima de 100
+        minimumSize: const Size(
+            double.infinity, 80), // Ancho completo y altura mínima de 100
         elevation: 20, // Ajusta la elevación según sea necesario
         shadowColor: Colors.lightBlueAccent, // Color de la sombra
       ),
@@ -147,7 +148,9 @@ class CustomButton extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(image, height: 80), //Ajusta la altura de la imagen que est dtnro del buton
+          Image.asset(image,
+              height:
+                  80), //Ajusta la altura de la imagen que est dtnro del buton
           const SizedBox(height: 10.0),
           Text(text, style: const TextStyle(fontSize: 18)),
         ],
@@ -155,5 +158,3 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
-
-

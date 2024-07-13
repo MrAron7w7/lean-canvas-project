@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -7,7 +6,8 @@ class LibrosPage extends StatelessWidget {
 
   // Función para lanzar la URL del PDF
   void _downloadPDF() async {
-    const url = 'https://juannava64.wordpress.com/wp-content/uploads/2012/02/redes-comandos-switch-y-router-cisco-v2-3.pdf'; // Reemplaza con la URL de tu archivo PDF
+    const url =
+        'https://juannava64.wordpress.com/wp-content/uploads/2012/02/redes-comandos-switch-y-router-cisco-v2-3.pdf'; // Reemplaza con la URL de tu archivo PDF
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -42,7 +42,7 @@ class LibrosPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(width: 16.0),
-              Expanded(
+              const Expanded(
                 child: Text(
                   'The Lean Startup: How Today\'s Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses\n\n'
                   'Este es un libro fundamental que introduce los principios de Lean Startup, que son la base del Lean Canvas.',
