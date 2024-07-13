@@ -60,16 +60,6 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 
-# Splash screen
-flutter_native_splash:
-  color: "#1B264F"
-  image: assets/splash/learn-canva.png
-  android_12:
-    color: "#1B264F"
-    image: assets/splash/learn-canva.png
-
-
-
 
 # Splash screen
 flutter_native_splash:
