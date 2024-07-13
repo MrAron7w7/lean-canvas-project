@@ -90,63 +90,72 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                 children: <Widget>[
                   TextFormField(
                     controller: _propuestaValorController,
-                    decoration: const InputDecoration(labelText: 'Propuesta Única de Valor'),
+                    decoration: const InputDecoration(labelText: 'Propuesta Única de Valor', counterText: ''),
+                    maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
                   ),
                   TextFormField(
                     controller: _segmentoClientesController,
-                    decoration: const InputDecoration(labelText: 'Segmento de Clientes'),
+                    decoration: const InputDecoration(labelText: 'Segmento de Clientes', counterText: ''),
+                    maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
                   ),
                   TextFormField(
                     controller: _problemaController,
-                    decoration: const InputDecoration(labelText: 'Problema'),
+                    decoration: const InputDecoration(labelText: 'Problema', counterText: ''),
+                    maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
                   ),
                   TextFormField(
                     controller: _solucionController,
-                    decoration: const InputDecoration(labelText: 'Solución'),
+                    decoration: const InputDecoration(labelText: 'Solución', counterText: ''),
+                    maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
                   ),
                   TextFormField(
                     controller: _canalesController,
-                    decoration: const InputDecoration(labelText: 'Canales'),
+                    decoration: const InputDecoration(labelText: 'Canales', counterText: ''),
+                    maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
                   ),
                   TextFormField(
                     controller: _flujosIngresoController,
-                    decoration: const InputDecoration(labelText: 'Flujos de Ingreso'),
+                    decoration: const InputDecoration(labelText: 'Flujos de Ingreso', counterText: ''),
+                    maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
                   ),
                   TextFormField(
                     controller: _estructuraCostesController,
-                    decoration: const InputDecoration(labelText: 'Estructura de Costes'),
+                    decoration: const InputDecoration(labelText: 'Estructura de Costes', counterText: ''),
+                    maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
                   ),
                   TextFormField(
                     controller: _metricasClaveController,
-                    decoration: const InputDecoration(labelText: 'Métricas Clave'),
+                    decoration: const InputDecoration(labelText: 'Métricas Clave', counterText: ''),
+                    maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
                   ),
                   TextFormField(
                     controller: _ventajaDiferencialController,
-                    decoration: const InputDecoration(labelText: 'Ventaja Diferencial'),
+                    decoration: const InputDecoration(labelText: 'Ventaja Diferencial', counterText: ''),
+                    maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
