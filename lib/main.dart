@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lean_canvas/botton_navbar/botton_navbar.dart';
 
 void main() => runApp(const MyApp());
-void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
