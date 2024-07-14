@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:lean_canvas/pages/create_page/create_page.dart';
 
 import '/pages/home_page/home_page.dart';
 import '../pages/profile_page/profile_page.dart';
@@ -25,7 +26,7 @@ class _BottonNavbarState extends State<BottonNavbar> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const Center(child: Text('Create page')),
+    CreatePage(),
     const ProfilePage(),
   ];
 

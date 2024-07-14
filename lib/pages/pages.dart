@@ -1,0 +1,9 @@
+export '/pages/home_page/home_page.dart';
+export 'create_page/create_page.dart';
+export 'home_page/libros_page.dart';
+export 'home_page/que_es_page.dart';
+export 'profile_page/profile_page.dart';
+export 'splash_page/login_page.dart';
+export 'splash_page/presentation_page.dart';
+export 'splash_page/register_page.dart';
+export 'splash_page/splash_page.dart';

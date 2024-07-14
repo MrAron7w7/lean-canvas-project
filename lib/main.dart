@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lean_canvas/botton_navbar/botton_navbar.dart';
-import 'package:lean_canvas/pages/home_page/libros_page.dart';
-import 'package:lean_canvas/pages/home_page/que_es_page.dart';
-import 'package:lean_canvas/pages/profile_page/profile_page.dart';
+
+import '/botton_navbar/botton_navbar.dart';
+import '/pages/pages.dart';
 
 void main() => runApp(const MyApp());
 
@@ -18,11 +17,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: GoogleFonts.poppins().fontFamily,
         scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          scrolledUnderElevation: 0.0,
+        ),
       ),
       //home: SplashPage(),
-      initialRoute: '/',
+      initialRoute: '/splashPage',
       routes: {
-        '/': (context) => const BottonNavbar(),
+        '/splashPage': (context) => const Presentation(),
+        '/bottonNavBar': (context) => const BottonNavbar(),
+        '/homePage': (context) => const HomePage(),
+        '/createPage': (context) => CreatePage(),
         '/profile': (context) => const ProfilePage(),
         '/LibroPage': (context) => const LibrosPage(),
         '/QueEsPage': (context) => const QueEsPage(),
