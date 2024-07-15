@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'libros_page.dart';
 
 class QueEsPage extends StatelessWidget {
   const QueEsPage({super.key});
@@ -9,8 +7,8 @@ class QueEsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       scrolledUnderElevation: 0.0,
-      backgroundColor: Colors.white,
+        scrolledUnderElevation: 0.0,
+        backgroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -38,7 +36,6 @@ class QueEsPage extends StatelessWidget {
             const SizedBox(height: 16),
             Image.asset('assets/images/creador.png'),
             const SizedBox(height: 16),
-          
           ],
         ),
       ),
