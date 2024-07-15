@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lean_canvas/pages/home_page/detalle_libro.dart';
 
 import '/botton_navbar/botton_navbar.dart';
 import '/pages/pages.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       //home: SplashPage(),
-      initialRoute: '/splashPage',
+      initialRoute: '/homePage',
       routes: {
         '/splashPage': (context) => const Presentation(),
         '/bottonNavBar': (context) => const BottonNavbar(),
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const ProfilePage(),
         '/LibroPage': (context) => const LibrosPage(),
         '/QueEsPage': (context) => const QueEsPage(),
+        '/DetalleLibro': (context) => const DetalleLibro(),
       },
     );
   }

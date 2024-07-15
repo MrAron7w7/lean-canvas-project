@@ -25,6 +25,7 @@ class _DetalleLibroState extends State<DetalleLibro> {
 
   @override
   Widget build(BuildContext context) {
+    Map parametros = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff576CA8),
@@ -46,10 +47,10 @@ class _DetalleLibroState extends State<DetalleLibro> {
             children: [
               // Titulo
               Text(
-                'The Lean Startup',
+                parametros['title'],
                 textAlign: TextAlign.justify,
                 style: GoogleFonts.poppins(
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -59,9 +60,12 @@ class _DetalleLibroState extends State<DetalleLibro> {
               // Imagen
               Row(
                 children: [
-                  Image.asset(
-                    'assets/images/libro_canvas.jpg',
-                    height: 200,
+                  Hero(
+                    tag: parametros['title'],
+                    child: Image.asset(
+                      parametros['imagen'],
+                      height: 200,
+                    ),
                   ),
 
                   const Gap(20),
@@ -76,7 +80,7 @@ class _DetalleLibroState extends State<DetalleLibro> {
                         _buildTextSpan(
                           context,
                           text1: 'Autor',
-                          text2: 'Autor',
+                          text2: '${parametros['author']}',
                         ),
 
                         const Gap(10),
@@ -85,7 +89,7 @@ class _DetalleLibroState extends State<DetalleLibro> {
                         _buildTextSpan(
                           context,
                           text1: 'Categoria',
-                          text2: 'Categoria',
+                          text2: '${parametros['category']}',
                         ),
                         const Gap(10),
 
@@ -125,8 +129,7 @@ class _DetalleLibroState extends State<DetalleLibro> {
                       ),
                     ),
                     const Gap(10),
-                    const Text(
-                        'Este es un libro fundamental que introduce los principios de Lean Startup, que son la base del Lean Canvas'),
+                    Text(parametros['description']),
                   ],
                 ),
               ),
@@ -141,7 +144,7 @@ class _DetalleLibroState extends State<DetalleLibro> {
       {required String text1, required String text2}) {
     return Text.rich(
       overflow: TextOverflow.ellipsis,
-      maxLines: 2,
+      maxLines: 5,
       TextSpan(
         text: '$text1: ',
         style: GoogleFonts.poppins(
@@ -151,6 +154,7 @@ class _DetalleLibroState extends State<DetalleLibro> {
           TextSpan(
             text: text2,
             style: GoogleFonts.poppins(
+              fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
           )
