@@ -6,17 +6,20 @@ class MyTextfield extends StatelessWidget {
   final String hintText;
   final bool? obscureText;
   final TextEditingController controller;
+  final Function(String?)? validator;
   const MyTextfield({
     super.key,
     required this.keyboardType,
     required this.hintText,
     this.obscureText = false,
     required this.controller,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) => validator!(value),
       obscureText: obscureText!,
       cursorColor: const Color(0xff576CA8),
       keyboardType: keyboardType,

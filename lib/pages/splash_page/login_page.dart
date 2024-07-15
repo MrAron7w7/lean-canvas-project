@@ -64,108 +64,125 @@ class _LoginPageState extends State<LoginPage> {
                   ),
 
                   // Inputs
-                  Column(
-                    children: [
-                      // Input  de email
-                      MyTextfield(
-                        keyboardType: TextInputType.emailAddress,
-                        hintText: 'Email',
-                        controller: _emailController,
-                      ),
+                  Form(
+                    child: Column(
+                      children: [
+                        // Input  de email
+                        MyTextfield(
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (p0) {
+                            if (p0 == null || p0.isEmpty) {
+                              return 'Por favor, introduce tu correo';
+                            }
+                            return null;
+                          },
+                          hintText: 'Email',
+                          controller: _emailController,
+                        ),
 
-                      const Gap(25),
+                        const Gap(25),
 
-                      // Input de password
-                      MyTextfield(
-                        keyboardType: TextInputType.text,
-                        hintText: 'Contraseña',
-                        controller: _passwordController,
-                      ),
-                      const Gap(20),
+                        // Input de password
+                        MyTextfield(
+                          keyboardType: TextInputType.text,
+                          validator: (p0) {
+                            (p0) {
+                              if (p0 == null || p0.isEmpty) {
+                                return 'Por favor, introduce tu contraseña';
+                              }
+                              return null;
+                            };
+                          },
+                          hintText: 'Contraseña',
+                          controller: _passwordController,
+                        ),
+                        const Gap(20),
 
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {},
+                            style: TextButton.styleFrom(
+                              foregroundColor: const Color(0xff576CA8),
+                            ),
+                            child: const Text(
+                              '¿Olvidastes tu contraseña?',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const Gap(10),
+
+                        // Botton iniciar
+                        MyButton(
+                          sizeText: 20,
+                          text: 'Iniciar',
+                          sizeWidth: size.width,
+                          sizeHeight: 60,
                           onPressed: () {},
+                        ),
+
+                        const Gap(15),
+
+                        // O crear cuenta
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                    builder: (context) =>
+                                        const RegisterPage()));
+                          },
                           style: TextButton.styleFrom(
-                            foregroundColor: const Color(0xff576CA8),
+                            foregroundColor: const Color(0xff494949),
                           ),
                           child: const Text(
-                            '¿Olvidastes tu contraseña?',
+                            'Crear cuenta',
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),
-                      ),
 
-                      const Gap(10),
+                        const Gap(20),
 
-                      // Botton iniciar
-                      MyButton(
-                        sizeText: 20,
-                        text: 'Iniciar',
-                        sizeWidth: size.width,
-                        sizeHeight: 60,
-                        onPressed: () {},
-                      ),
-
-                      const Gap(15),
-
-                      // O crear cuenta
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              CupertinoPageRoute(
-                                  builder: (context) => const RegisterPage()));
-                        },
-                        style: TextButton.styleFrom(
-                          foregroundColor: const Color(0xff494949),
-                        ),
-                        child: const Text(
-                          'Crear cuenta',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
+                        Text(
+                          'O continua con',
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xff576CA8),
                           ),
                         ),
-                      ),
 
-                      const Gap(20),
+                        const Gap(20),
 
-                      Text(
-                        'O continua con',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xff576CA8),
+                        SizedBox(
+                          //color: Colors.blue[100],
+                          width: 250,
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              MyButtonSocial(
+                                icon: Icons.email,
+                                onTap: () {},
+                              ),
+                              MyButtonSocial(
+                                icon: Icons.facebook,
+                                onTap: () {},
+                              ),
+                              MyButtonSocial(
+                                icon: Icons.apple,
+                                onTap: () {},
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-
-                      const Gap(20),
-
-                      SizedBox(
-                        //color: Colors.blue[100],
-                        width: 250,
-                        height: 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            MyButtonSocial(
-                              icon: Icons.email,
-                              onTap: () {},
-                            ),
-                            MyButtonSocial(
-                              icon: Icons.facebook,
-                              onTap: () {},
-                            ),
-                            MyButtonSocial(
-                              icon: Icons.apple,
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "934522275303",
+    "project_id": "my-lean-canvas",
+    "storage_bucket": "my-lean-canvas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934522275303:android:6b1a47c6c4db0fa3326942",
+        "android_client_info": {
+          "package_name": "com.example.lean_canvas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsFiYe961yiESa-uMHpARULMI06T9ZCV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
