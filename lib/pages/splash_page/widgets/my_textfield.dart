@@ -6,7 +6,7 @@ class MyTextfield extends StatelessWidget {
   final String hintText;
   final bool? obscureText;
   final TextEditingController controller;
-  final Function(String?)? validator;
+  final String? Function(String?)? validator;
   const MyTextfield({
     super.key,
     required this.keyboardType,
@@ -19,7 +19,7 @@ class MyTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) => validator!(value),
+      validator: validator,
       obscureText: obscureText!,
       cursorColor: const Color(0xff576CA8),
       keyboardType: keyboardType,

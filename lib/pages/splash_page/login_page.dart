@@ -1,12 +1,16 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lean_canvas/provider/user_provider.dart';
+import 'package:lean_canvas/services/service_firebase.dart';
+import 'package:provider/provider.dart';
 
-import '/pages/splash_page/register_page.dart';
-import '/pages/splash_page/widgets/my_button.dart';
-import '/pages/splash_page/widgets/my_button_social.dart';
-import '/pages/splash_page/widgets/my_textfield.dart';
+import 'register_page.dart';
+import 'widgets/my_button.dart';
+import 'widgets/my_button_social.dart';
+import 'widgets/my_textfield.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,6 +23,49 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  final ServiceFirebase _authService = ServiceFirebase();
+
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+
+  // Iniciar session
+  Future<void> _singInUser() async {
+    final user = await _authService.loginAccount(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+
+    if (user != null) {
+      _emailController.clear();
+      _passwordController.clear();
+
+      // Establece el UID del usuario en UserProvider
+      Provider.of<UserProvider>(context, listen: false).setUserId(user.uid);
+
+      Navigator.pushReplacementNamed(context, '/bottonNavBar');
+    } else {
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.error,
+        animType: AnimType.rightSlide,
+        title: '¡Error!',
+        titleTextStyle: GoogleFonts.poppins(
+          fontWeight: FontWeight.w800,
+          fontSize: 22,
+        ),
+        desc: 'Usuario o contraseña incorrectos',
+      ).show();
+    }
+  }
+
+  // Validad formulario si esta vacio
+  void _validateForm() {
+    if (_globalKey.currentState!.validate()) {
+      _singInUser();
+    } else {
+      print('No valido');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -30,16 +77,13 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Container(
-            //color: Colors.blue[100],
             margin: const EdgeInsets.all(16),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // Iniciar session
                   Container(
                     margin: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 20),
-                    //color: Colors.red[100],
                     child: Column(
                       children: [
                         Text(
@@ -62,42 +106,34 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-
-                  // Inputs
                   Form(
+                    key: _globalKey,
                     child: Column(
                       children: [
-                        // Input  de email
                         MyTextfield(
                           keyboardType: TextInputType.emailAddress,
-                          validator: (p0) {
-                            if (p0 == null || p0.isEmpty) {
-                              return 'Por favor, introduce tu correo';
+                          hintText: 'Email',
+                          controller: _emailController,
+                          validator: (val) {
+                            if (val == '') {
+                              return 'Campo requerido*';
                             }
                             return null;
                           },
-                          hintText: 'Email',
-                          controller: _emailController,
                         ),
-
                         const Gap(25),
-
-                        // Input de password
                         MyTextfield(
                           keyboardType: TextInputType.text,
-                          validator: (p0) {
-                            (p0) {
-                              if (p0 == null || p0.isEmpty) {
-                                return 'Por favor, introduce tu contraseña';
-                              }
-                              return null;
-                            };
-                          },
                           hintText: 'Contraseña',
                           controller: _passwordController,
+                          validator: (val) {
+                            if (val == '') {
+                              return 'Campo requerido*';
+                            }
+                            return null;
+                          },
                         ),
                         const Gap(20),
-
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
@@ -113,21 +149,15 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-
                         const Gap(10),
-
-                        // Botton iniciar
                         MyButton(
                           sizeText: 20,
                           text: 'Iniciar',
                           sizeWidth: size.width,
                           sizeHeight: 60,
-                          onPressed: () {},
+                          onPressed: _validateForm,
                         ),
-
                         const Gap(15),
-
-                        // O crear cuenta
                         TextButton(
                           onPressed: () {
                             Navigator.push(
@@ -146,9 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-
                         const Gap(20),
-
                         Text(
                           'O continua con',
                           style: GoogleFonts.poppins(
@@ -156,11 +184,8 @@ class _LoginPageState extends State<LoginPage> {
                             color: const Color(0xff576CA8),
                           ),
                         ),
-
                         const Gap(20),
-
                         SizedBox(
-                          //color: Colors.blue[100],
                           width: 250,
                           height: 50,
                           child: Row(
