@@ -83,7 +83,7 @@ class _EditProfileState extends State<EditProfile> {
             ),
           ),
           Positioned(
-            top: 300, // Ajusta esta posición según tus necesidades
+            top: 300, 
             left: 20,
             right: 20,
             child: Column(
@@ -96,7 +96,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10), // Espacio entre los campos
+                const SizedBox(height: 10), 
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -105,7 +105,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10), // Espacio entre los campos
+                const SizedBox(height: 10), 
                 TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -115,12 +115,12 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20), // Espacio antes del botón
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                        const Color.fromARGB(255, 20, 20, 80), // Color de fondo
+                        const Color.fromARGB(255, 20, 20, 80),  
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

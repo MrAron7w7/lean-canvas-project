@@ -26,7 +26,7 @@ class UiProvider extends ChangeNotifier{
   changeTheme(){
     _isDark = !isDark;
 
-    //Save the value to secure storage
+   
     storage.setBool("isDark", _isDark);
     notifyListeners();
   }
