@@ -183,8 +183,3 @@ class BottomSheetContent extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(const MaterialApp(
-    home: EditProfile(),
-  ));
-}

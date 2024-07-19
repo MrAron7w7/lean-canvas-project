@@ -1,7 +1,10 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:lean_canvas/pages/profile_page/edit_profile.dart';
+import 'package:lean_canvas/pages/profile_page/provider.dart';
 import 'package:lean_canvas/pages/profile_page/utils.dart';
+import 'package:provider/provider.dart';
+
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,12 +14,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool isDarkMode = false;
-
   String profile = 'assets/images/profile.png';
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Provider.of<UiProvider>(context).isDark;
+    final textColor = isDarkMode ? Colors.white : Colors.black;
+
     return Scaffold(
       backgroundColor: isDarkMode ? Colors.black : Colors.white,
       body: Stack(
@@ -49,35 +53,39 @@ class _ProfilePageState extends State<ProfilePage> {
             right: 0,
             child: Column(
               children: [
-                const Text(
+                Text(
                   'usuario-name',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: textColor,
+                  ),
                 ),
                 const SizedBox(height: 5),
-                const Text(
+                Text(
                   'youremail@domain.com | +01 234 567 89',
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black12),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: textColor.withOpacity(0.7),
+                  ),
                 ),
                 const SizedBox(height: 10),
-
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: const Color(
-                        0xFFE1C329), // Color de fondo en formato ARGB
+                    backgroundColor: const Color(0xFFE1C329), // Color de fondo en formato ARGB
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(10.0), // Bordes redondeados
+                      borderRadius: BorderRadius.circular(10.0), // Bordes redondeados
                     ),
                   ),
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) => const EditProfile()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EditProfile(),
+                      ),
+                    );
                   },
                   icon: const Icon(
                     Icons.edit,
@@ -118,9 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               trailing: Switch(
                                 value: isDarkMode,
                                 onChanged: (value) {
-                                  setState(() {
-                                    isDarkMode = !isDarkMode;
-                                  });
+                                  Provider.of<UiProvider>(context, listen: false).changeTheme();
                                 },
                               ),
                             ),
@@ -159,13 +165,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 const SizedBox(
-                    height: 80), // Espacio para el BottomNavigationBar
+                  height: 80, // Espacio para el BottomNavigationBar
+                ),
               ],
             ),
           ),
         ],
       ),
-      
     );
   }
 }
