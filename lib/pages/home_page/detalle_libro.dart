@@ -11,7 +11,7 @@ class DetalleLibro extends StatefulWidget {
 }
 
 class _DetalleLibroState extends State<DetalleLibro> {
-  // Función para lanzar la URL del PDF
+  
   void _openPDF() async {
     const url =
         'https://juannava64.wordpress.com/wp-content/uploads/2012/02/redes-comandos-switch-y-router-cisco-v2-3.pdf';

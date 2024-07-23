@@ -15,12 +15,12 @@ class HomePage extends StatelessWidget {
       {
         'text': 'Pilares',
         'image': 'assets/images/pilares.png',
-        'onTap': () => Navigator.pushNamed(context, '/libros'),
+        'onTap': () => Navigator.pushNamed(context, '/PilaresPage'),
       },
       {
         'text': 'Proyectos',
         'image': 'assets/images/proyectos.png',
-        'onTap': () => Navigator.pushNamed(context, '/libros'),
+        'onTap': () => Navigator.pushNamed(context, '/ProyectosPage'),
       },
       {
         'text': '¿Qué es?',
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                       CircleAvatar(
                         radius: 35,
                         backgroundImage: AssetImage(
-                            'assets/images/foto_perfil.jpg'), // imagen del prifil
+                            'assets/images/foto_perfil.jpg'),
                       ),
                     ],
                   ),
