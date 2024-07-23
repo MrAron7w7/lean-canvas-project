@@ -9,6 +9,7 @@ import '/pages/pages.dart';
 import 'firebase_options.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   initializeFirebase();
   runApp(
     MultiProvider(
