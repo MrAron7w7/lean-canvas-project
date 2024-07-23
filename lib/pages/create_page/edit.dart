@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'lean.dart';
 
 class EditDataScreen extends StatefulWidget {
   final Map<String, String> item;
 
-  EditDataScreen({required this.item});
+  const EditDataScreen({super.key, required this.item});
 
   @override
   _EditDataScreenState createState() => _EditDataScreenState();
@@ -20,9 +21,11 @@ class _EditDataScreenState extends State<EditDataScreen> {
   @override
   void initState() {
     super.initState();
-    _nombreProyectoController = TextEditingController(text: widget.item['nombreProyecto']);
+    _nombreProyectoController =
+        TextEditingController(text: widget.item['nombreProyecto']);
     _empresaController = TextEditingController(text: widget.item['empresa']);
-    _descripcionController = TextEditingController(text: widget.item['descripcion']);
+    _descripcionController =
+        TextEditingController(text: widget.item['descripcion']);
     _notaController = TextEditingController(text: widget.item['nota']);
   }
 
@@ -69,13 +72,13 @@ class _EditDataScreenState extends State<EditDataScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar Proyecto', style: TextStyle(color: Colors.white)),
+        title: const Text('Editar Proyecto',
+            style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF1B264F),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white), 
+          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        
       ),
       body: Container(
         color: Colors.white,
@@ -90,7 +93,8 @@ class _EditDataScreenState extends State<EditDataScreen> {
                 children: <Widget>[
                   TextFormField(
                     controller: _nombreProyectoController,
-                    decoration: const InputDecoration(labelText: 'Nombre del Proyecto', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Nombre del Proyecto', counterText: ''),
                     maxLength: 28,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -102,19 +106,22 @@ class _EditDataScreenState extends State<EditDataScreen> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _empresaController,
-                    decoration: const InputDecoration(labelText: 'Empresa', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Empresa', counterText: ''),
                     maxLength: 28,
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _descripcionController,
-                    decoration: const InputDecoration(labelText: 'Descripción', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Descripción', counterText: ''),
                     maxLength: 100,
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _notaController,
-                    decoration: const InputDecoration(labelText: 'Nota', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Nota', counterText: ''),
                     maxLength: 100,
                   ),
                   const SizedBox(height: 20),
@@ -129,7 +136,7 @@ class _EditDataScreenState extends State<EditDataScreen> {
           borderRadius: BorderRadius.circular(40),
         ),
         backgroundColor: const Color(0xFF1B264F),
-          onPressed: _goToLeanCanvasForm,
+        onPressed: _goToLeanCanvasForm,
         child: const Icon(
           Icons.check,
           color: Colors.white,

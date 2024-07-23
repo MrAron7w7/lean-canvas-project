@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:lean_canvas/pages/create_page/add.dart';
 import 'package:lean_canvas/pages/create_page/detail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
 class CreatePage extends StatefulWidget {
+  const CreatePage({super.key});
+
   @override
   _CreatePageState createState() => _CreatePageState();
 }
@@ -25,7 +28,8 @@ class _CreatePageState extends State<CreatePage> {
     if (itemsString != null) {
       final List<dynamic> decodedItems = json.decode(itemsString);
       setState(() {
-        items = decodedItems.map((item) => Map<String, String>.from(item)).toList();
+        items =
+            decodedItems.map((item) => Map<String, String>.from(item)).toList();
       });
     }
   }
@@ -77,7 +81,10 @@ class _CreatePageState extends State<CreatePage> {
             children: [
               const Text(
                 'PROYECTOS',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF302B27)),
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF302B27)),
               ),
               const SizedBox(height: 10),
               const Text(
@@ -86,8 +93,8 @@ class _CreatePageState extends State<CreatePage> {
               ),
               const SizedBox(height: 30),
               Image.asset(
-                'assets/images/modelocanvas.png', 
-                height: 250, 
+                'assets/images/modelocanvas.png',
+                height: 250,
               ),
               const SizedBox(height: 20),
               Expanded(
@@ -96,30 +103,59 @@ class _CreatePageState extends State<CreatePage> {
                   itemBuilder: (context, index) {
                     return SizedBox(
                       height: 80,
-                      child: Card(
-                        color: const Color(0xFFf6f4f6),
-                        elevation: 4,
-                        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                        child: ListTile(
-                          title: Text(items[index]['nombreProyecto'] ?? '', style: const TextStyle(color: Color(0xFF302B27), fontWeight: FontWeight.bold)),
-                          onTap: () async {
-                            final result = await Navigator.push<Map<String, String>>(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailScreen(
-                                  item: items[index],
-                                  index: index,
-                                ),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 15),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Colors.white,
+                              Color.fromARGB(255, 217, 238, 255)
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0xFF274690),
+                              blurRadius: 4,
+                              offset: Offset(2, 2),
+                            ),
+                          ],
+                        ),
+                        child: Card(
+                          color: Colors.transparent,
+                          elevation: 0,
+                          child: ListTile(
+                            title: Text(
+                              items[index]['nombreProyecto'] ?? '',
+                              style: const TextStyle(
+                                color: Color(0xFF302B27),
+                                fontWeight: FontWeight.bold,
                               ),
-                            );
-                            if (result != null) {
-                              if (result.containsKey('delete') && result['delete'] == 'true') {
-                                _deleteItem(index);
-                              } else {
-                                _updateItem(index, result);
+                            ),
+                            onTap: () async {
+                              final result =
+                                  await Navigator.push<Map<String, String>>(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailScreen(
+                                    item: items[index],
+                                    index: index,
+                                  ),
+                                ),
+                              );
+                              if (result != null) {
+                                if (result.containsKey('delete') &&
+                                    result['delete'] == 'true') {
+                                  _deleteItem(index);
+                                } else {
+                                  _updateItem(index, result);
+                                }
                               }
-                            }
-                          },
+                            },
+                          ),
                         ),
                       ),
                     );
@@ -139,7 +175,7 @@ class _CreatePageState extends State<CreatePage> {
           final result = await Navigator.push<Map<String, String>>(
             context,
             MaterialPageRoute(
-              builder: (context) => AddDataScreen(),
+              builder: (context) => const AddDataScreen(),
             ),
           );
 

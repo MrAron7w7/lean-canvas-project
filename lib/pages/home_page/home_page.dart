@@ -193,7 +193,12 @@ Widget _myCard(BuildContext context,
             backgroundImage: AssetImage(image),
           ),
           const Gap(10),
-          Text(text),
+          Text(
+            text,
+            style: const TextStyle(
+              color: Colors.black,
+            ),
+          ),
           const Gap(20),
         ],
       ),

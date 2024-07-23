@@ -49,6 +49,7 @@ dependencies:
   cloud_firestore: ^5.1.0
   provider: ^6.1.2
   awesome_dialog: ^3.2.1
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:

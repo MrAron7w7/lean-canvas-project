@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class LeanCanvasForm extends StatefulWidget {
   final Map<String, String> initialData;
 
-  LeanCanvasForm({this.initialData = const {}}); // Parámetro opcional con valor predeterminado
+  const LeanCanvasForm(
+      {super.key,
+      this.initialData =
+          const {}}); // Parámetro opcional con valor predeterminado
 
   @override
   _LeanCanvasFormState createState() => _LeanCanvasFormState();
@@ -24,15 +27,24 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
   @override
   void initState() {
     super.initState();
-    _propuestaValorController = TextEditingController(text: widget.initialData['propuestaValor'] ?? '');
-    _segmentoClientesController = TextEditingController(text: widget.initialData['segmentoClientes'] ?? '');
-    _problemaController = TextEditingController(text: widget.initialData['problema'] ?? '');
-    _solucionController = TextEditingController(text: widget.initialData['solucion'] ?? '');
-    _canalesController = TextEditingController(text: widget.initialData['canales'] ?? '');
-    _flujosIngresoController = TextEditingController(text: widget.initialData['flujosIngreso'] ?? '');
-    _estructuraCostesController = TextEditingController(text: widget.initialData['estructuraCostes'] ?? '');
-    _metricasClaveController = TextEditingController(text: widget.initialData['metricasClave'] ?? '');
-    _ventajaDiferencialController = TextEditingController(text: widget.initialData['ventajaDiferencial'] ?? '');
+    _propuestaValorController =
+        TextEditingController(text: widget.initialData['propuestaValor'] ?? '');
+    _segmentoClientesController = TextEditingController(
+        text: widget.initialData['segmentoClientes'] ?? '');
+    _problemaController =
+        TextEditingController(text: widget.initialData['problema'] ?? '');
+    _solucionController =
+        TextEditingController(text: widget.initialData['solucion'] ?? '');
+    _canalesController =
+        TextEditingController(text: widget.initialData['canales'] ?? '');
+    _flujosIngresoController =
+        TextEditingController(text: widget.initialData['flujosIngreso'] ?? '');
+    _estructuraCostesController = TextEditingController(
+        text: widget.initialData['estructuraCostes'] ?? '');
+    _metricasClaveController =
+        TextEditingController(text: widget.initialData['metricasClave'] ?? '');
+    _ventajaDiferencialController = TextEditingController(
+        text: widget.initialData['ventajaDiferencial'] ?? '');
   }
 
   void _saveForm() {
@@ -71,10 +83,14 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pilares Lean Canvas', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
+        title: const Text('Pilares Lean Canvas',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            )),
         backgroundColor: const Color(0xFF1B264F),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white), 
+          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -90,78 +106,77 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                 children: <Widget>[
                   TextFormField(
                     controller: _propuestaValorController,
-                    decoration: const InputDecoration(labelText: 'Propuesta Única de Valor', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Propuesta Única de Valor', counterText: ''),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
-                    
                   ),
                   TextFormField(
                     controller: _segmentoClientesController,
-                    decoration: const InputDecoration(labelText: 'Segmento de Clientes', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Segmento de Clientes', counterText: ''),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
-                    
                   ),
                   TextFormField(
                     controller: _problemaController,
-                    decoration: const InputDecoration(labelText: 'Problema', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Problema', counterText: ''),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
-                    
                   ),
                   TextFormField(
                     controller: _solucionController,
-                    decoration: const InputDecoration(labelText: 'Solución', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Solución', counterText: ''),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
-                    
                   ),
                   TextFormField(
                     controller: _canalesController,
-                    decoration: const InputDecoration(labelText: 'Canales', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Canales', counterText: ''),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
-                    
                   ),
                   TextFormField(
                     controller: _flujosIngresoController,
-                    decoration: const InputDecoration(labelText: 'Flujos de Ingreso', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Flujos de Ingreso', counterText: ''),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
-                    
                   ),
                   TextFormField(
                     controller: _estructuraCostesController,
-                    decoration: const InputDecoration(labelText: 'Estructura de Costes', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Estructura de Costes', counterText: ''),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
-                    
                   ),
                   TextFormField(
                     controller: _metricasClaveController,
-                    decoration: const InputDecoration(labelText: 'Métricas Clave', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Métricas Clave', counterText: ''),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
-                    
                   ),
                   TextFormField(
                     controller: _ventajaDiferencialController,
-                    decoration: const InputDecoration(labelText: 'Ventaja Diferencial', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Ventaja Diferencial', counterText: ''),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
-                    
                   ),
                   const SizedBox(height: 20),
-                  
                 ],
               ),
             ),
@@ -173,7 +188,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
           borderRadius: BorderRadius.circular(40),
         ),
         backgroundColor: const Color(0xFF1B264F),
-          onPressed: _saveForm,
+        onPressed: _saveForm,
         child: const Icon(
           Icons.done_all,
           color: Colors.white,

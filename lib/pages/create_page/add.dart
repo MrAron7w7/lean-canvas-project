@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lean_canvas/pages/create_page/lean.dart';
 
 class AddDataScreen extends StatefulWidget {
+  const AddDataScreen({super.key});
+
   @override
   _AddDataScreenState createState() => _AddDataScreenState();
 }
@@ -45,10 +47,14 @@ class _AddDataScreenState extends State<AddDataScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nuevo Proyecto', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
+        title: const Text('Nuevo Proyecto',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            )),
         backgroundColor: const Color(0xFF1B264F),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white), 
+          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -65,7 +71,8 @@ class _AddDataScreenState extends State<AddDataScreen> {
                 children: <Widget>[
                   TextFormField(
                     controller: _nombreProyectoController,
-                    decoration: const InputDecoration(labelText: 'Nombre del Proyecto', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Nombre del Proyecto', counterText: ''),
                     maxLength: 28,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -77,25 +84,28 @@ class _AddDataScreenState extends State<AddDataScreen> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _empresaController,
-                    decoration: const InputDecoration(labelText: 'Empresa', counterText: '',),
-                    maxLength: 28,                    
+                    decoration: const InputDecoration(
+                      labelText: 'Empresa',
+                      counterText: '',
+                    ),
+                    maxLength: 28,
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _descripcionController,
-                    decoration: const InputDecoration(labelText: 'Descripción', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Descripción', counterText: ''),
                     maxLength: 100,
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _notaController,
-                    decoration: const InputDecoration(labelText: 'Nota', counterText: ''),
+                    decoration: const InputDecoration(
+                        labelText: 'Nota', counterText: ''),
                     maxLength: 100,
                   ),
-                  const SizedBox(height: 20),  
-                  
+                  const SizedBox(height: 20),
                 ],
-                
               ),
             ),
           ),
@@ -106,7 +116,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
           borderRadius: BorderRadius.circular(40),
         ),
         backgroundColor: const Color(0xFF1B264F),
-          onPressed: _goToLeanCanvasForm,
+        onPressed: _goToLeanCanvasForm,
         child: const Icon(
           Icons.check,
           color: Colors.white,

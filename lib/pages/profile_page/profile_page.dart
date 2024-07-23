@@ -1,7 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:lean_canvas/pages/profile_page/edit_profile.dart';
 import 'package:lean_canvas/pages/profile_page/utils.dart';
+import 'package:lean_canvas/provider/darkmode_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,12 +15,36 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool isDarkMode = false;
-
   String profile = 'assets/images/profile.png';
+  String userName = 'usuario-name';
+  String email = 'youremail@domain.com';
+
+  @override
+  void initState() {
+    super.initState();
+    loadProfileData();
+  }
+
+  Future<void> loadProfileData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedName = prefs.getString('name') ?? 'usuario-name';
+    final savedEmail = prefs.getString('email') ?? 'youremail@domain.com';
+    final imagePath = prefs.getString('profileImagePath') ?? '';
+
+    setState(() {
+      userName = savedName;
+      email = savedEmail;
+      if (imagePath.isNotEmpty) {
+        profile = imagePath;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Provider.of<UiProvider>(context).isDark;
+    final textColor = isDarkMode ? Colors.white : Colors.black;
+
     return Scaffold(
       backgroundColor: isDarkMode ? Colors.black : Colors.white,
       body: Stack(
@@ -39,7 +67,9 @@ class _ProfilePageState extends State<ProfilePage> {
               backgroundColor: Colors.white,
               child: CircleAvatar(
                 radius: 70,
-                backgroundImage: Image.asset(profile).image,
+                backgroundImage: profile.startsWith('assets/')
+                    ? AssetImage(profile)
+                    : FileImage(File(profile)) as ImageProvider,
               ),
             ),
           ),
@@ -49,20 +79,24 @@ class _ProfilePageState extends State<ProfilePage> {
             right: 0,
             child: Column(
               children: [
-                const Text(
-                  'usuario-name',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                Text(
+                  userName,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: textColor,
+                  ),
                 ),
                 const SizedBox(height: 5),
-                const Text(
-                  'youremail@domain.com | +01 234 567 89',
+                Text(
+                  email,
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black12),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: textColor.withOpacity(0.7),
+                  ),
                 ),
                 const SizedBox(height: 10),
-
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
@@ -73,11 +107,15 @@ class _ProfilePageState extends State<ProfilePage> {
                           BorderRadius.circular(10.0), // Bordes redondeados
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) => const EditProfile()));
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EditProfile(),
+                      ),
+                    );
+                    // Reload profile data after returning from EditProfile
+                    loadProfileData();
                   },
                   icon: const Icon(
                     Icons.edit,
@@ -118,9 +156,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               trailing: Switch(
                                 value: isDarkMode,
                                 onChanged: (value) {
-                                  setState(() {
-                                    isDarkMode = !isDarkMode;
-                                  });
+                                  Provider.of<UiProvider>(context,
+                                          listen: false)
+                                      .changeTheme();
                                 },
                               ),
                             ),
@@ -159,7 +197,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 const SizedBox(
-                    height: 80), // Espacio para el BottomNavigationBar
+                  height: 80,
+                ),
               ],
             ),
           ),
