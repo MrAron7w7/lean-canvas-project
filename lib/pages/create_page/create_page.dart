@@ -95,13 +95,35 @@ class _CreatePageState extends State<CreatePage> {
                   itemCount: items.length,
                   itemBuilder: (context, index) {
                     return SizedBox(
-                      height: 80,
+                    height: 80,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [Colors.white, Color.fromARGB(255, 217, 238, 255)],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0xFF274690),
+                            blurRadius: 4,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
+                      ),
                       child: Card(
-                        color: const Color(0xFFf6f4f6),
-                        elevation: 4,
-                        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        color: Colors.transparent, 
+                        elevation: 0, 
                         child: ListTile(
-                          title: Text(items[index]['nombreProyecto'] ?? '', style: const TextStyle(color: Color(0xFF302B27), fontWeight: FontWeight.bold)),
+                          title: Text(
+                            items[index]['nombreProyecto'] ?? '',
+                            style: const TextStyle(
+                              color: Color(0xFF302B27),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           onTap: () async {
                             final result = await Navigator.push<Map<String, String>>(
                               context,
@@ -122,7 +144,8 @@ class _CreatePageState extends State<CreatePage> {
                           },
                         ),
                       ),
-                    );
+                    ),
+                  );
                   },
                 ),
               ),

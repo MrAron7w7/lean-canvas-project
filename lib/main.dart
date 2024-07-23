@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lean_canvas/pages/splash_page/splash_page.dart';
-
+import 'package:lean_canvas/pages/create_page/create_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      home: const SplashPage(),
+      home: CreatePage(),
     );
   }
 }
