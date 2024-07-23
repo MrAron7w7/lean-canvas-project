@@ -41,6 +41,7 @@ dependencies:
   iconly: ^1.0.1
   shared_preferences: ^2.2.3
   provider: ^6.1.2
+  image_picker: ^1.1.2
   
 
 dev_dependencies:

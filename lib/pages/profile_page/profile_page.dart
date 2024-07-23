@@ -1,10 +1,10 @@
-
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lean_canvas/pages/profile_page/edit_profile.dart';
-import 'package:lean_canvas/pages/profile_page/provider.dart';
 import 'package:lean_canvas/pages/profile_page/utils.dart';
+import 'package:lean_canvas/pages/profile_page/provider.dart';
 import 'package:provider/provider.dart';
-
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -15,6 +15,29 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   String profile = 'assets/images/profile.png';
+  String userName = 'usuario-name';
+  String email = 'youremail@domain.com';
+
+  @override
+  void initState() {
+    super.initState();
+    loadProfileData();
+  }
+
+  Future<void> loadProfileData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedName = prefs.getString('name') ?? 'usuario-name';
+    final savedEmail = prefs.getString('email') ?? 'youremail@domain.com';
+    final imagePath = prefs.getString('profileImagePath') ?? '';
+
+    setState(() {
+      userName = savedName;
+      email = savedEmail;
+      if (imagePath.isNotEmpty) {
+        profile = imagePath;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +66,9 @@ class _ProfilePageState extends State<ProfilePage> {
               backgroundColor: Colors.white,
               child: CircleAvatar(
                 radius: 70,
-                backgroundImage: Image.asset(profile).image,
+                backgroundImage: profile.startsWith('assets/')
+                    ? AssetImage(profile)
+                    : FileImage(File(profile)) as ImageProvider,
               ),
             ),
           ),
@@ -54,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               children: [
                 Text(
-                  'usuario-name',
+                  userName,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
@@ -63,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  'youremail@domain.com | +01 234 567 89',
+                  email,
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -74,18 +99,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: const Color(0xFFE1C329), // Color de fondo en formato ARGB
+                    backgroundColor: const Color(
+                        0xFFE1C329), // Color de fondo en formato ARGB
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Bordes redondeados
+                      borderRadius:
+                          BorderRadius.circular(10.0), // Bordes redondeados
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.push(
+                  onPressed: () async {
+                    await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const EditProfile(),
                       ),
                     );
+                    // Reload profile data after returning from EditProfile
+                    loadProfileData();
                   },
                   icon: const Icon(
                     Icons.edit,
@@ -126,7 +155,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               trailing: Switch(
                                 value: isDarkMode,
                                 onChanged: (value) {
-                                  Provider.of<UiProvider>(context, listen: false).changeTheme();
+                                  Provider.of<UiProvider>(context,
+                                          listen: false)
+                                      .changeTheme();
                                 },
                               ),
                             ),
