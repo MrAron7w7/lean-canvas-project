@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lean_canvas/pages/home_page/detalle_libro.dart';
+import 'package:lean_canvas/pages/home_page/pilares_page.dart';
+import 'package:lean_canvas/pages/home_page/proyectos_page.dart';
 import 'package:lean_canvas/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -53,6 +55,8 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const ProfilePage(),
         '/LibroPage': (context) => const LibrosPage(),
         '/QueEsPage': (context) => const QueEsPage(),
+        '/PilaresPage': (context) => PilaresPage(),
+        '/ProyectosPage': (context) => const ProyectosPage(),
         '/DetalleLibro': (context) => const DetalleLibro(),
       },
     );

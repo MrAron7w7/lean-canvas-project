@@ -40,12 +40,12 @@ class _HomePageState extends State<HomePage> {
       {
         'text': 'Pilares',
         'image': 'assets/images/pilares.png',
-        'onTap': () => Navigator.pushNamed(context, '/libros'),
+        'onTap': () => Navigator.pushNamed(context, '/PilaresPage'),
       },
       {
         'text': 'Proyectos',
         'image': 'assets/images/proyectos.png',
-        'onTap': () => Navigator.pushNamed(context, '/libros'),
+        'onTap': () => Navigator.pushNamed(context, '/ProyectosPage'),
       },
       {
         'text': '¿Qué es?',
