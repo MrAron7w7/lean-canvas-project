@@ -160,7 +160,7 @@ class BottomSheetContent extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 19.9,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
