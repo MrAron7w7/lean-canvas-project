@@ -70,10 +70,10 @@ dev_dependencies:
 # Splash screen
 flutter_native_splash:
   color: "#1B264F"
-  image: assets/splash/learn-canva.png
+  image: assets/images/splash.png
   android_12:
     color: "#1B264F"
-    image: assets/splash/learn-canva.png
+    image: assets/images/splash.png
 
 
 

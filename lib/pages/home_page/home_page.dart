@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lean_canvas/provider/user_provider.dart';
 import 'package:lean_canvas/services/service_firebase.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<Map<String, dynamic>?> _userDataFuture;
+  File? profileImage;
 
   @override
   void initState() {
@@ -23,6 +27,17 @@ class _HomePageState extends State<HomePage> {
       _userDataFuture = ServiceFirebase().getUserData(uid);
     } else {
       _userDataFuture = Future.value(null);
+    }
+    _loadProfileImage();
+  }
+
+  Future<void> _loadProfileImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final imagePath = prefs.getString('profileImagePath') ?? '';
+    if (imagePath.isNotEmpty) {
+      setState(() {
+        profileImage = File(imagePath);
+      });
     }
   }
 
@@ -125,10 +140,12 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.white, fontSize: 20),
                               ),
                             ),
-                            const CircleAvatar(
+                            CircleAvatar(
                               radius: 35,
-                              backgroundImage: AssetImage(
-                                  'assets/images/user.png'), // imagen del perfil
+                              backgroundImage: profileImage != null
+                                  ? FileImage(profileImage!)
+                                  : const AssetImage('assets/images/user.png')
+                                      as ImageProvider,
                             ),
                           ],
                         ),

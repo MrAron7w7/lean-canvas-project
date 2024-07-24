@@ -81,6 +81,9 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textColor = theme.textTheme.bodyLarge?.color;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pilares Lean Canvas',
@@ -95,7 +98,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
         ),
       ),
       body: Container(
-        color: Colors.white,
+        color: theme.scaffoldBackgroundColor,
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -106,75 +109,111 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                 children: <Widget>[
                   TextFormField(
                     controller: _propuestaValorController,
-                    decoration: const InputDecoration(
-                        labelText: 'Propuesta Única de Valor', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Propuesta Única de Valor',
+                      counterText: '',
+                      labelStyle: TextStyle(color: textColor),
+                    ),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(color: textColor),
                   ),
                   TextFormField(
                     controller: _segmentoClientesController,
-                    decoration: const InputDecoration(
-                        labelText: 'Segmento de Clientes', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Segmento de Clientes',
+                      counterText: '',
+                      labelStyle: TextStyle(color: textColor),
+                    ),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(color: textColor),
                   ),
                   TextFormField(
                     controller: _problemaController,
-                    decoration: const InputDecoration(
-                        labelText: 'Problema', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Problema',
+                      counterText: '',
+                      labelStyle: TextStyle(color: textColor),
+                    ),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(color: textColor),
                   ),
                   TextFormField(
                     controller: _solucionController,
-                    decoration: const InputDecoration(
-                        labelText: 'Solución', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Solución',
+                      counterText: '',
+                      labelStyle: TextStyle(color: textColor),
+                    ),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(color: textColor),
                   ),
                   TextFormField(
                     controller: _canalesController,
-                    decoration: const InputDecoration(
-                        labelText: 'Canales', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Canales',
+                      counterText: '',
+                      labelStyle: TextStyle(color: textColor),
+                    ),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(color: textColor),
                   ),
                   TextFormField(
                     controller: _flujosIngresoController,
-                    decoration: const InputDecoration(
-                        labelText: 'Flujos de Ingreso', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Flujos de Ingreso',
+                      counterText: '',
+                      labelStyle: TextStyle(color: textColor),
+                    ),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(color: textColor),
                   ),
                   TextFormField(
                     controller: _estructuraCostesController,
-                    decoration: const InputDecoration(
-                        labelText: 'Estructura de Costes', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Estructura de Costes',
+                      counterText: '',
+                      labelStyle: TextStyle(color: textColor),
+                    ),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(color: textColor),
                   ),
                   TextFormField(
                     controller: _metricasClaveController,
-                    decoration: const InputDecoration(
-                        labelText: 'Métricas Clave', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Métricas Clave',
+                      counterText: '',
+                      labelStyle: TextStyle(color: textColor),
+                    ),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(color: textColor),
                   ),
                   TextFormField(
                     controller: _ventajaDiferencialController,
-                    decoration: const InputDecoration(
-                        labelText: 'Ventaja Diferencial', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Ventaja Diferencial',
+                      counterText: '',
+                      labelStyle: TextStyle(color: textColor),
+                    ),
                     maxLength: 100,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(color: textColor),
                   ),
                   const SizedBox(height: 20),
                 ],

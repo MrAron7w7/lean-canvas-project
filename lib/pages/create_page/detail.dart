@@ -53,6 +53,9 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textColor = theme.textTheme.bodyLarge?.color;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -75,7 +78,7 @@ class DetailScreen extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: Colors.white,
+        color: theme.scaffoldBackgroundColor,
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -87,7 +90,7 @@ class DetailScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: Container(
-                    color: Colors.white,
+                    color: theme.cardColor,
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,8 +104,7 @@ class DetailScreen extends StatelessWidget {
                           ),
                           Text(
                             ' ${item['empresa'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 16, color: Color(0xFF274690)),
+                            style: TextStyle(fontSize: 16, color: textColor),
                           ),
                           const SizedBox(height: 20),
                           const Divider(),
@@ -115,8 +117,7 @@ class DetailScreen extends StatelessWidget {
                           ),
                           Text(
                             ' ${item['descripcion'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 16, color: Color(0xFF274690)),
+                            style: TextStyle(fontSize: 16, color: textColor),
                           ),
                           const SizedBox(height: 20),
                           const Divider(),
@@ -129,8 +130,7 @@ class DetailScreen extends StatelessWidget {
                           ),
                           Text(
                             ' ${item['nota'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 16, color: Color(0xFF274690)),
+                            style: TextStyle(fontSize: 16, color: textColor),
                           ),
                         ]),
                   ),
@@ -152,7 +152,7 @@ class DetailScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: Container(
-                    color: Colors.white,
+                    color: theme.cardColor,
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -169,9 +169,9 @@ class DetailScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         Text(
                           item['propuestaValor'] ?? '',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 15,
-                            color: Color(0xFF274690),
+                            color: textColor,
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -183,8 +183,7 @@ class DetailScreen extends StatelessWidget {
                                 color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['segmentoClientes'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 15, color: Color(0xFF274690))),
+                            style: TextStyle(fontSize: 15, color: textColor)),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Problema: ',
@@ -194,8 +193,7 @@ class DetailScreen extends StatelessWidget {
                                 color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['problema'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 15, color: Color(0xFF274690))),
+                            style: TextStyle(fontSize: 15, color: textColor)),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Solución: ',
@@ -205,8 +203,7 @@ class DetailScreen extends StatelessWidget {
                                 color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['solucion'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 15, color: Color(0xFF274690))),
+                            style: TextStyle(fontSize: 15, color: textColor)),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Canales: ',
@@ -216,8 +213,7 @@ class DetailScreen extends StatelessWidget {
                                 color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['canales'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 15, color: Color(0xFF274690))),
+                            style: TextStyle(fontSize: 15, color: textColor)),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Flujos de Ingreso: ',
@@ -227,8 +223,7 @@ class DetailScreen extends StatelessWidget {
                                 color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['flujosIngreso'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 15, color: Color(0xFF274690))),
+                            style: TextStyle(fontSize: 15, color: textColor)),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Estructura de Costes: ',
@@ -238,8 +233,7 @@ class DetailScreen extends StatelessWidget {
                                 color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['estructuraCostes'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 15, color: Color(0xFF274690))),
+                            style: TextStyle(fontSize: 15, color: textColor)),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Métricas Clave: ',
@@ -249,8 +243,7 @@ class DetailScreen extends StatelessWidget {
                                 color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['metricasClave'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 15, color: Color(0xFF274690))),
+                            style: TextStyle(fontSize: 15, color: textColor)),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Ventaja Diferencial: ',
@@ -260,8 +253,7 @@ class DetailScreen extends StatelessWidget {
                                 color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['ventajaDiferencial'] ?? ''}',
-                            style: const TextStyle(
-                                fontSize: 15, color: Color(0xFF274690))),
+                            style: TextStyle(fontSize: 15, color: textColor)),
                         const SizedBox(height: 20),
                       ],
                     ),

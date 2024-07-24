@@ -70,6 +70,19 @@ class _EditDataScreenState extends State<EditDataScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textColor = theme.textTheme.bodyLarge?.color;
+    final inputDecoration = InputDecoration(
+      labelStyle: TextStyle(color: textColor),
+      counterStyle: TextStyle(color: textColor),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: textColor ?? Colors.black),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: textColor ?? Colors.black),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Editar Proyecto',
@@ -81,7 +94,7 @@ class _EditDataScreenState extends State<EditDataScreen> {
         ),
       ),
       body: Container(
-        color: Colors.white,
+        color: theme.scaffoldBackgroundColor,
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -93,8 +106,9 @@ class _EditDataScreenState extends State<EditDataScreen> {
                 children: <Widget>[
                   TextFormField(
                     controller: _nombreProyectoController,
-                    decoration: const InputDecoration(
-                        labelText: 'Nombre del Proyecto', counterText: ''),
+                    decoration: inputDecoration.copyWith(
+                      labelText: 'Nombre del Proyecto',
+                    ),
                     maxLength: 28,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -106,22 +120,25 @@ class _EditDataScreenState extends State<EditDataScreen> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _empresaController,
-                    decoration: const InputDecoration(
-                        labelText: 'Empresa', counterText: ''),
+                    decoration: inputDecoration.copyWith(
+                      labelText: 'Empresa',
+                    ),
                     maxLength: 28,
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _descripcionController,
-                    decoration: const InputDecoration(
-                        labelText: 'Descripción', counterText: ''),
+                    decoration: inputDecoration.copyWith(
+                      labelText: 'Descripción',
+                    ),
                     maxLength: 100,
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _notaController,
-                    decoration: const InputDecoration(
-                        labelText: 'Nota', counterText: ''),
+                    decoration: inputDecoration.copyWith(
+                      labelText: 'Nota',
+                    ),
                     maxLength: 100,
                   ),
                   const SizedBox(height: 20),

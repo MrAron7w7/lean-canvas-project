@@ -20,7 +20,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
       final leanCanvasData = await Navigator.push<Map<String, String>>(
         context,
         MaterialPageRoute(
-          builder: (context) => LeanCanvasForm(),
+          builder: (context) => const LeanCanvasForm(),
         ),
       );
 
@@ -45,13 +45,22 @@ class _AddDataScreenState extends State<AddDataScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+    final backgroundColor = theme.scaffoldBackgroundColor;
+    final textColor = theme.textTheme.bodyLarge?.color;
+    final inputDecorationColor =
+        isDarkMode ? Colors.white : const Color(0xFF1B264F);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nuevo Proyecto',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            )),
+        title: const Text(
+          'Nuevo Proyecto',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: const Color(0xFF1B264F),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
@@ -59,7 +68,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
         ),
       ),
       body: Container(
-        color: Colors.white,
+        color: backgroundColor,
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -71,9 +80,16 @@ class _AddDataScreenState extends State<AddDataScreen> {
                 children: <Widget>[
                   TextFormField(
                     controller: _nombreProyectoController,
-                    decoration: const InputDecoration(
-                        labelText: 'Nombre del Proyecto', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Nombre del Proyecto',
+                      labelStyle: TextStyle(color: inputDecorationColor),
+                      counterText: '',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: inputDecorationColor),
+                      ),
+                    ),
                     maxLength: 28,
+                    style: TextStyle(color: textColor),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor ingresa el nombre del proyecto';
@@ -84,25 +100,44 @@ class _AddDataScreenState extends State<AddDataScreen> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _empresaController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Empresa',
+                      labelStyle: TextStyle(color: inputDecorationColor),
                       counterText: '',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: inputDecorationColor),
+                      ),
                     ),
                     maxLength: 28,
+                    style: TextStyle(color: textColor),
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _descripcionController,
-                    decoration: const InputDecoration(
-                        labelText: 'Descripción', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Descripción',
+                      labelStyle: TextStyle(color: inputDecorationColor),
+                      counterText: '',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: inputDecorationColor),
+                      ),
+                    ),
                     maxLength: 100,
+                    style: TextStyle(color: textColor),
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: _notaController,
-                    decoration: const InputDecoration(
-                        labelText: 'Nota', counterText: ''),
+                    decoration: InputDecoration(
+                      labelText: 'Nota',
+                      labelStyle: TextStyle(color: inputDecorationColor),
+                      counterText: '',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: inputDecorationColor),
+                      ),
+                    ),
                     maxLength: 100,
+                    style: TextStyle(color: textColor),
                   ),
                   const SizedBox(height: 20),
                 ],

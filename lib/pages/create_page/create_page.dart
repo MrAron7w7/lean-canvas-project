@@ -66,30 +66,36 @@ class _CreatePageState extends State<CreatePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Obtén los colores del tema actual
+    final theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lean Canvas', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF1B264F),
       ),
       body: Container(
-        color: Colors.white,
+        color: theme.scaffoldBackgroundColor,
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'PROYECTOS',
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF302B27)),
+                    color: isDarkMode ? Colors.white : const Color(0xFF302B27)),
               ),
               const SizedBox(height: 10),
-              const Text(
+              Text(
                 'Visualiza tu modelo de negocio',
-                style: TextStyle(fontSize: 16, color: Color(0xFF1B264F)),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: isDarkMode ? Colors.white : const Color(0xFF1B264F),
+                ),
               ),
               const SizedBox(height: 30),
               Image.asset(
@@ -107,11 +113,16 @@ class _CreatePageState extends State<CreatePage> {
                         margin: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 15),
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [
-                              Colors.white,
-                              Color.fromARGB(255, 217, 238, 255)
-                            ],
+                          gradient: LinearGradient(
+                            colors: isDarkMode
+                                ? [
+                                    const Color(0xFF1B264F),
+                                    const Color(0xFF3E4E75),
+                                  ]
+                                : [
+                                    Colors.white,
+                                    const Color.fromARGB(255, 217, 238, 255),
+                                  ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                           ),
@@ -130,8 +141,10 @@ class _CreatePageState extends State<CreatePage> {
                           child: ListTile(
                             title: Text(
                               items[index]['nombreProyecto'] ?? '',
-                              style: const TextStyle(
-                                color: Color(0xFF302B27),
+                              style: TextStyle(
+                                color: isDarkMode
+                                    ? Colors.white
+                                    : const Color(0xFF302B27),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
