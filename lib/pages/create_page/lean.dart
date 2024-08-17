@@ -91,7 +91,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                   TextFormField(
                     controller: _propuestaValorController,
                     decoration: const InputDecoration(labelText: 'Propuesta Única de Valor', counterText: ''),
-                    maxLength: 100,
+                    maxLength: 120,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
@@ -99,7 +99,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                   TextFormField(
                     controller: _segmentoClientesController,
                     decoration: const InputDecoration(labelText: 'Segmento de Clientes', counterText: ''),
-                    maxLength: 100,
+                    maxLength: 120,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
@@ -107,7 +107,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                   TextFormField(
                     controller: _problemaController,
                     decoration: const InputDecoration(labelText: 'Problema', counterText: ''),
-                    maxLength: 100,
+                    maxLength: 120,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
@@ -115,7 +115,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                   TextFormField(
                     controller: _solucionController,
                     decoration: const InputDecoration(labelText: 'Solución', counterText: ''),
-                    maxLength: 100,
+                    maxLength: 60,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
@@ -123,7 +123,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                   TextFormField(
                     controller: _canalesController,
                     decoration: const InputDecoration(labelText: 'Canales', counterText: ''),
-                    maxLength: 100,
+                    maxLength: 60,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
@@ -131,7 +131,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                   TextFormField(
                     controller: _flujosIngresoController,
                     decoration: const InputDecoration(labelText: 'Flujos de Ingreso', counterText: ''),
-                    maxLength: 100,
+                    maxLength: 120,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
@@ -139,7 +139,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                   TextFormField(
                     controller: _estructuraCostesController,
                     decoration: const InputDecoration(labelText: 'Estructura de Costes', counterText: ''),
-                    maxLength: 100,
+                    maxLength: 120,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
@@ -147,7 +147,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                   TextFormField(
                     controller: _metricasClaveController,
                     decoration: const InputDecoration(labelText: 'Métricas Clave', counterText: ''),
-                    maxLength: 100,
+                    maxLength: 60,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     
@@ -155,7 +155,7 @@ class _LeanCanvasFormState extends State<LeanCanvasForm> {
                   TextFormField(
                     controller: _ventajaDiferencialController,
                     decoration: const InputDecoration(labelText: 'Ventaja Diferencial', counterText: ''),
-                    maxLength: 100,
+                    maxLength: 60,
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     

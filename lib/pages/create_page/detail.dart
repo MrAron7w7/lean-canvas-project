@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'edit.dart';
+import 'pdf.dart'; 
 
 class DetailScreen extends StatelessWidget {
   final Map<String, String> item;
@@ -44,6 +45,12 @@ class DetailScreen extends StatelessWidget {
     }
   }
 
+  Future<void> _generatePDF(BuildContext context) async {
+
+    print('Generar PDF');
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,13 +66,51 @@ class DetailScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.delete, color: Colors.white, size: 30),
-            onPressed: () {
-              _showDeleteConfirmationDialog(context);
+          PopupMenuButton<String>(
+            onSelected: (String value) async {
+              if (value == 'Eliminar') {
+                await _showDeleteConfirmationDialog(context);
+              } else if (value == 'Generar PDF') {
+                await PDFGenerator.generatePDF(context, item);
+              }
             },
+            itemBuilder: (BuildContext context) {
+              return [
+                const PopupMenuItem<String>(
+                  value: 'Generar PDF',
+                  child: ListTile(
+                    leading: Icon(Icons.picture_as_pdf, color: Color(0xFF1B264F)),
+                    title: Text(
+                      'Generar PDF',
+                      style: TextStyle(
+                        color: Color(0xFF274690),  
+                        fontWeight: FontWeight.bold,  
+                      ),
+                    ),
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'Eliminar',
+                  child: ListTile(
+                    leading: Icon(Icons.delete, color: Color(0xFF1B264F)),
+                    title: Text(
+                      'Eliminar',
+                      style: TextStyle(
+                        color: Color(0xFF274690),  
+                        fontWeight: FontWeight.bold,  
+                      ),
+                    ),
+                  ),
+                ),
+                
+              ];
+            },
+            icon: const Icon(Icons.more_vert, color: Colors.white, size: 30),
+            color: Colors.white, 
           ),
         ],
+
+
       ),
       body: Container(
         color: Colors.white,
@@ -78,55 +123,57 @@ class DetailScreen extends StatelessWidget {
               children: <Widget>[
                 const SizedBox(height: 10),
                 SizedBox(
-                  width: double.infinity, 
+                  width: double.infinity,
                   child: Container(
                     color: Colors.white,
-                    padding: const EdgeInsets.all(8.0), 
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                          const Text(
-                            'Empresa:',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF1B264F)),
-                          ),
-                          Text(
-                            ' ${item['empresa'] ?? ''}',
-                            style:
-                                const TextStyle(fontSize: 16, color: Color(0xFF274690)),
-                          ),
-                          const SizedBox(height: 20),
-                          const Divider(),
-                          const Text(
-                            'Descripción: ',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF1B264F)),
-                          ),
-                          Text(
-                            ' ${item['descripcion'] ?? ''}',
-                            style:
-                                const TextStyle(fontSize: 16, color: Color(0xFF274690)),
-                          ),
-                          const SizedBox(height: 20),
-                          const Divider(),
-                          const Text(
-                            'Nota: ',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF1B264F)),
-                          ),
-                          Text(
-                            ' ${item['nota'] ?? ''}',
-                            style:
-                                const TextStyle(fontSize: 16, color: Color(0xFF274690)),
-                          ),
-                      ]),),),
-                
+                        const Text(
+                          'Empresa:',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF1B264F)),
+                        ),
+                        Text(
+                          ' ${item['empresa'] ?? ''}',
+                          style: const TextStyle(
+                              fontSize: 16, color: Color(0xFF274690)),
+                        ),
+                        const SizedBox(height: 20),
+                        const Divider(),
+                        const Text(
+                          'Descripción: ',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF1B264F)),
+                        ),
+                        Text(
+                          ' ${item['descripcion'] ?? ''}',
+                          style: const TextStyle(
+                              fontSize: 16, color: Color(0xFF274690)),
+                        ),
+                        const SizedBox(height: 20),
+                        const Divider(),
+                        const Text(
+                          'Nota: ',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF1B264F)),
+                        ),
+                        Text(
+                          ' ${item['nota'] ?? ''}',
+                          style: const TextStyle(
+                              fontSize: 16, color: Color(0xFF274690)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 20),
                 const Divider(),
                 const SizedBox(height: 20),
@@ -142,10 +189,10 @@ class DetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 SizedBox(
-                  width: double.infinity, 
+                  width: double.infinity,
                   child: Container(
                     color: Colors.white,
-                    padding: const EdgeInsets.all(8.0), 
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -170,67 +217,95 @@ class DetailScreen extends StatelessWidget {
                         const Divider(),
                         const Text('Segmento de Clientes: ',
                             style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1B264F))),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['segmentoClientes'] ?? ''}',
-                            style: const TextStyle(fontSize: 15, color: Color(0xFF274690))),
+                            style: const TextStyle(
+                                fontSize: 15, color: Color(0xFF274690))),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Problema: ',
                             style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1B264F))),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['problema'] ?? ''}',
-                            style: const TextStyle(fontSize: 15, color: Color(0xFF274690))),
+                            style: const TextStyle(
+                                fontSize: 15, color: Color(0xFF274690))),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Solución: ',
                             style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1B264F))),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['solucion'] ?? ''}',
-                            style: const TextStyle(fontSize: 15, color: Color(0xFF274690))),
+                            style: const TextStyle(
+                                fontSize: 15, color: Color(0xFF274690))),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Canales: ',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1B264F))),
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['canales'] ?? ''}',
-                            style: const TextStyle(fontSize: 15, color: Color(0xFF274690))),
+                            style: const TextStyle(
+                                fontSize: 15, color: Color(0xFF274690))),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Flujos de Ingreso: ',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1B264F))),
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['flujosIngreso'] ?? ''}',
-                            style: const TextStyle(fontSize: 15, color: Color(0xFF274690))),
+                            style: const TextStyle(
+                                fontSize: 15, color: Color(0xFF274690))),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Estructura de Costes: ',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1B264F))),
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['estructuraCostes'] ?? ''}',
-                            style: const TextStyle(fontSize: 15, color: Color(0xFF274690))),
+                            style: const TextStyle(
+                                fontSize: 15, color: Color(0xFF274690))),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Métricas Clave: ',
-                            style: TextStyle(fontSize: 16,  fontWeight: FontWeight.bold, color: Color(0xFF1B264F))),
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['metricasClave'] ?? ''}',
-                            style: const TextStyle(fontSize: 15, color: Color(0xFF274690))),
+                            style: const TextStyle(
+                                fontSize: 15, color: Color(0xFF274690))),
                         const SizedBox(height: 20),
                         const Divider(),
                         const Text('Ventaja Diferencial: ',
-                            style: TextStyle(fontSize: 16,  fontWeight: FontWeight.bold, color: Color(0xFF1B264F))),
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1B264F))),
                         const SizedBox(height: 8),
                         Text(' ${item['ventajaDiferencial'] ?? ''}',
-                            style: const TextStyle(fontSize: 15, color: Color(0xFF274690))),
+                            style: const TextStyle(
+                                fontSize: 15, color: Color(0xFF274690))),
                         const SizedBox(height: 20),
                       ],
                     ),
                   ),
-                ),
-                
+                )
               ],
             ),
           ),

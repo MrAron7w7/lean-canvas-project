@@ -78,7 +78,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                   TextFormField(
                     controller: _empresaController,
                     decoration: const InputDecoration(labelText: 'Empresa', counterText: '',),
-                    maxLength: 28,                    
+                    maxLength: 36,                    
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
