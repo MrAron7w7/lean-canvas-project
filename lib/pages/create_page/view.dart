@@ -40,11 +40,16 @@ class PDFPreviewScreen extends StatelessWidget {
   }
 
   Future<void> _requestPermissions() async {
-    final status = await Permission.storage.request();
-    if (!status.isGranted) {
-      throw 'Permiso de almacenamiento no concedido';
-    }
+  if (await Permission.storage.request().isGranted) {
+    return;
+  } else if (await Permission.manageExternalStorage.request().isGranted) {
+    return;
+  } else {
+    throw 'Permiso de almacenamiento no concedido';
   }
+}
+
+
 
   @override
   Widget build(BuildContext context) {
